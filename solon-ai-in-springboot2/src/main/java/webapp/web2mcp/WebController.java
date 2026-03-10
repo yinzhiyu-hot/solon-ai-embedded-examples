@@ -1,5 +1,6 @@
 package webapp.web2mcp;
 
+import org.noear.solon.ai.annotation.ResourceMapping;
 import org.noear.solon.ai.annotation.ToolMapping;
 import org.noear.solon.ai.mcp.McpChannel;
 import org.noear.solon.ai.mcp.server.IMcpServerEndpoint;
@@ -21,5 +22,11 @@ public class WebController implements IMcpServerEndpoint {
     @RequestMapping("getWeather")
     public String getWeather(@Param(description = "城市") String city) {
         return "晴，14度";
+    }
+
+    @ResourceMapping(uri = "config://app-version", description = "获取应用版本号")
+    @RequestMapping("getAppVersion")
+    public String getAppVersion() {
+        return "v3.2.0";
     }
 }
