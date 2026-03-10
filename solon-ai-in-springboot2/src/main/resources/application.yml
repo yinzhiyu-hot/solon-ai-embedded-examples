@@ -1,0 +1,22 @@
+#server.servlet.context-path: "/demo"
+
+
+logging:
+  level:
+    root: INFO
+
+server:
+  servlet:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+
+rag:
+  init:
+    enabled: true
+  health:
+    enabled: true
+    interval-ms: 60000
+    initial-delay-ms: 30000
+    check-text: "health-check"
