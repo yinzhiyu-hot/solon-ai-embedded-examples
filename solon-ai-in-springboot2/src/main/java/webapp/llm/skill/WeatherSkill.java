@@ -7,6 +7,7 @@ import org.noear.solon.ai.chat.skill.AbsSkill;
 import org.noear.solon.annotation.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import webapp.service.skill.WeatherService;
 
 @Component
 public class WeatherSkill extends AbsSkill {
