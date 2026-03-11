@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class CalculatorTools {
     @Autowired
-    CalculatorService  calculatorService; //示意一下
+    CalculatorService calculatorService; //示意一下
 
     @ToolMapping(description = "将两个数字相加")
     public int add(@Param int a, @Param int b) {

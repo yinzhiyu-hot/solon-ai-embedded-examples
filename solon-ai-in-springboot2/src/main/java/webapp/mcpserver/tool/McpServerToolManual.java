@@ -12,7 +12,7 @@ import java.util.Collection;
 /**
  * 用于手动构建（仅供参考，可以删掉）
  * */
-public class McpServerTool2 {
+public class McpServerToolManual {
     //
     // 建议开启编译参数：-parameters （否则，最好再配置参数的 name）
     //

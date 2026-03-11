@@ -1,6 +1,5 @@
 #server.servlet.context-path: "/demo"
 
-
 logging:
   level:
     root: INFO
@@ -14,7 +13,7 @@ server:
 
 rag:
   init:
-    enabled: true
+    enabled: false
   health:
     enabled: true
     interval-ms: 60000

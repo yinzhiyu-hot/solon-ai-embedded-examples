@@ -8,7 +8,6 @@ public class _Constants {
     public static final String chat_model = "qwen2.5:1.5b"; //"llama3.2";//deepseek-r1:1.5b;
 
 
-
     //换成自己的模型配置（参考：https://solon.noear.org/article/934）
     public static final String embedding_apiUrl = "http://127.0.0.1:11434/api/embed";
     public static final String embedding_provider = "ollama";

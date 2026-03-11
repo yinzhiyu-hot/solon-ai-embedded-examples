@@ -18,11 +18,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.Constants;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import webapp.mcpserver.tool.McpServerTool2;
+import webapp.mcpserver.tool.McpServerToolManual;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -45,21 +44,16 @@ public class McpServerConfig {
         /**
          * Spring 注解支持
          * */
-
         ToolSchemaUtil.addBodyDetector(e -> e.isAnnotationPresent(RequestBody.class));
         ToolSchemaUtil.addParamResolver((e, t) -> {
             RequestParam p1Anno = e.getAnnotation(RequestParam.class);
-
             if (p1Anno != null) { //这个注解因为没有描述字段，所以变量名一定要很语义
                 Parameter p1 = (Parameter) e;
                 String name = Utils.annoAlias(p1Anno.name(), p1.getName());
                 return new ParamDesc(name, t.getGenericType(), p1Anno.required(), "", p1Anno.defaultValue());
             }
-
             return null;
         });
-
-        ///
 
         System.setProperty("server.contextPath", contextPath);
 
@@ -69,28 +63,23 @@ public class McpServerConfig {
             app.filter(new McpServerAuth());
         });
 
-        /**
-         * 手动构建端点示例（仅供参考）
-         * */
-
+        //region 手动构建端点示例（仅供参考，可以删掉）
         //手动构建 mcp 服务端点（只是演示，可以去掉）
         McpServerEndpointProvider endpointProvider = McpServerEndpointProvider.builder()
                 .name("McpServerTool2")
                 .channel(McpChannel.STREAMABLE)
                 .sseEndpoint("/mcp/demo2/sse")
                 .build();
-        endpointProvider.addTool(new MethodToolProvider(new McpServerTool2()));
-        endpointProvider.addResource(new MethodResourceProvider(new McpServerTool2()));
-        endpointProvider.addPrompt(new MethodPromptProvider(new McpServerTool2()));
+        endpointProvider.addTool(new MethodToolProvider(new McpServerToolManual()));
+        endpointProvider.addResource(new MethodResourceProvider(new McpServerToolManual()));
+        endpointProvider.addPrompt(new MethodPromptProvider(new McpServerToolManual()));
         endpointProvider.postStart();
 
         //手动加入到 solon 容器（只是演示，可以去掉）
         Solon.context().wrapAndPut(endpointProvider.getName(), endpointProvider);
+        //endregion
 
-        /**
-         * Spring 组件转为端点
-         * */
-
+        //Spring 组件转为端点
         springCom2Endpoint();
     }
 

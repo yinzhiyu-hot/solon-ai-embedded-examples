@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class WeatherService {
-    private static Logger LOG = LoggerFactory.getLogger(WeatherService.class);
+    private static Logger log = LoggerFactory.getLogger(WeatherService.class);
 
     public String getWeather(String location) {
-        LOG.error("进来了...");
+        log.error("进来了...");
 
         return "晴，14度";
     }
