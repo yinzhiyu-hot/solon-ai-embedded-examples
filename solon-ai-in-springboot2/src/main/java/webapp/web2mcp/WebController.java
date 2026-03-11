@@ -29,4 +29,17 @@ public class WebController implements IMcpServerEndpoint {
     public String getAppVersion() {
         return "v3.2.0";
     }
+
+
+    @RequestMapping("/hello")
+    public String hello(String name) {
+//        //动态获取（添加工具等）//只是示例，可以删掉
+//        McpServerEndpointProvider serverEndpointProvider = Solon.context().getBean("demo1");
+//
+//        serverEndpointProvider.addTool(new FunctionToolDesc(null));
+//        serverEndpointProvider.addResource(new FunctionResourceDesc(null));
+//        serverEndpointProvider.addPrompt(new FunctionPromptDesc(null));
+
+        return "hello world: " + name;
+    }
 }
